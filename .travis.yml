@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+# series of commands that are executed before our tests are ran
+before_install:
+  - docker build -t frontend -f Dockerfile.dev .
+# -e CI=true is to make sure that the test suite exits after running the tests
+script:
+  - docker run -e CI=true frontend npm run test\
